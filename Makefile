@@ -7,7 +7,7 @@ ifndef ERLANG_VERSION
 override ERLANG_VERSION=22.2
 endif
 ifndef ELIXIR_VERSION
-override ELIXIR_VERSION=v1.9.1
+override ELIXIR_VERSION=v1.9.3
 endif
 
 alpine-elixir:

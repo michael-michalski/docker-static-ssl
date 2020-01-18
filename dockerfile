@@ -83,4 +83,7 @@ RUN apk --no-cache update \
     )" \
     && rm -rf /tmp/erlang-build \
     && rm -rf /tmp/elixir-build \
-    && apk --no-cache del perl binutils make
+    && apk --no-cache del perl binutils make \
+    && rm -rf /var/lib/apt/lists/*
+
+CMD ["iex"]
