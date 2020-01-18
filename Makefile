@@ -14,7 +14,7 @@ alpine-elixir:
 	docker build --squash --force-rm --target alpine-elixir --build-arg ELIXIR_VERSION=$(ELIXIR_VERSION) --build-arg ERLANG_VERSION=$(ERLANG_VERSION) --build-arg ALPINE_VERSION=$(ALPINE_VERSION) -t $(ALPINE_ELIXIR_SSSL):latest -t $(ALPINE_ELIXIR_SSSL):$(ALPINE_VERSION)-$(ERLANG_VERSION)-$(ELIXIR_VERSION) .
 
 buildx:
-	docker buildx build --push --platform linux/arm/v7 --force-rm --target alpine-elixir --build-arg ELIXIR_VERSION=$(ELIXIR_VERSION) --build-arg ERLANG_VERSION=$(ERLANG_VERSION) --build-arg ALPINE_VERSION=$(ALPINE_VERSION) -t $(ALPINE_ELIXIR_SSSL):latest -t $(ALPINE_ELIXIR_SSSL):$(ALPINE_VERSION)-$(ERLANG_VERSION)-$(ELIXIR_VERSION) .
+	docker buildx build --platform linux/amd64,linux/x86,linux/arm64,linux/arm --force-rm --target alpine-elixir --build-arg ELIXIR_VERSION=$(ELIXIR_VERSION) --build-arg ERLANG_VERSION=$(ERLANG_VERSION) --build-arg ALPINE_VERSION=$(ALPINE_VERSION) -t $(ALPINE_ELIXIR_SSSL):latest -t $(ALPINE_ELIXIR_SSSL):$(ALPINE_VERSION)-$(ERLANG_VERSION)-$(ELIXIR_VERSION) . --push
 
 all: alpine-elixir ## Build the Docker image
 
