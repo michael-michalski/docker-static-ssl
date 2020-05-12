@@ -43,6 +43,7 @@ RUN echo $ERLANG_VERSION; curl -fSL -o OTP-$ERLANG_VERSION.tar.gz https://github
         --without-typer \
         --enable-threads \
         --enable-shared-zlib \
+        --enable-dirty-schedulers \
         --disable-dynamic-ssl-lib \
         --enable-ssl=/usr/lib \
     && make -j$(getconf _NPROCESSORS_ONLN) \
