@@ -1,13 +1,13 @@
 ALPINE_ELIXIR_SSSL ?= michaelmichalski/elixir-sssl
 
 ifndef ALPINE_VERSION
-override ALPINE_VERSION=3.10.3
+override ALPINE_VERSION=3.13.3
 endif
 ifndef ERLANG_VERSION
-override ERLANG_VERSION=22.2
+override ERLANG_VERSION=23.2
 endif
 ifndef ELIXIR_VERSION
-override ELIXIR_VERSION=v1.9.3
+override ELIXIR_VERSION=v1.11.4
 endif
 
 alpine-elixir:
