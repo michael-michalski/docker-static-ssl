@@ -4,7 +4,7 @@ FROM alpine:$ALPINE_VERSION
 
 RUN apk update \
  && apk upgrade \
- && apk add --update openssl-dev dpkg-dev dpkg curl gcc g++ make autoconf ncurses-dev perl coreutils gnupg linux-headers zlib-dev
+ && apk add --update openssl-libs-static dpkg-dev dpkg curl gcc g++ make autoconf ncurses-dev perl coreutils gnupg linux-headers zlib-dev
 
 ENV LANG=en_US.UTF-8
 
@@ -86,5 +86,20 @@ RUN apk --no-cache update \
     && rm -rf /tmp/elixir-build \
     && apk --no-cache del perl binutils make \
     && rm -rf /var/lib/apt/lists/*
+
+CMD ["iex"]
+
+FROM alpine-elixir AS rustler
+
+ENV LANG=en_US.UTF-8 \
+ RUSTUP_HOME=/usr/local/rustup \
+ CARGO_HOME=/usr/local/cargo \
+ RUSTFLAGS=-C target-feature=-crt-static \
+ PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+RUN  wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rustup-init" \
+ && chmod +x rustup-init \
+ && ./rustup-init -y --no-modify-path --profile minimal --default-toolchain stable \
+ && rm rustup-init
 
 CMD ["iex"]
